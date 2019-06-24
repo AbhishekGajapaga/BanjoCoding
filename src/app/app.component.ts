@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MapviewComponent } from './mapview/mapview.component';
 
 @Component({
   selector: 'app-root',

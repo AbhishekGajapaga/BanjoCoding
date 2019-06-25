@@ -7,21 +7,28 @@ import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { HeaderComponent } from './header/header.component';
 import { MapviewComponent } from './mapview/mapview.component';
+import { AddnewplaceComponent } from './addnewplace/addnewplace.component';
+import { UpdateplaceComponent } from './updateplace/updateplace.component';
+
+import { MapsService } from './services/mapsservice.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    MapviewComponent
+    MapviewComponent,
+    AddnewplaceComponent,
+    UpdateplaceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCZWloOiDw1cwvDKK3LVtegg_7lKd_UHLM'
+      apiKey: 'AIzaSyCZWloOiDw1cwvDKK3LVtegg_7lKd_UHLM',
+      libraries: ['places']
     })
   ],
-  providers: [],
+  providers: [MapsService],
   bootstrap: [AppComponent],
   exports:[
     MapviewComponent,

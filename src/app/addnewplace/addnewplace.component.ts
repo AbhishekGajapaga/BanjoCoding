@@ -43,20 +43,20 @@ export class AddnewplaceComponent implements OnInit {
     var places = JSON.parse(localStorage.getItem("places") || "{}");
     let property : Property = {
       id: myId,
-      ownerName: owner.value,
-      address: address.value,
-      askingPrice: aprice.value,
-      description: desc.value,
+      ownerName: this.owner,
+      address: this.address,
+      askingPrice: this.aprice,
+      description: this.desc,
       lat: this.lat,
       lng: this.lng
     }
     console.log(property);
     places[myId] = property;
     localStorage.setItem("places", JSON.stringify(places));
-    owner.value = '';
-    address.value = '';
-    aprice.value = '';
-    desc.value = '';
+    this.owner = '';
+    this.address = '';
+    this.aprice = '';
+    this.desc = '';
   }
 
 

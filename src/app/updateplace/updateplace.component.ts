@@ -8,12 +8,12 @@ import { MapsService } from '../services/mapsservice.service';
 })
 export class UpdateplaceComponent implements OnInit {
 
-  lat: number = 0;
-  lng: number = 0;
+  lat = 0;
+  lng = 0;
+  isSelected = false;
+  selectedPlace = {};
 
   constructor(private _mapsService: MapsService) {
-    this.isSelected = false;
-    this.selectedPlace = {};
     this.places = JSON.parse(localStorage.getItem("places") || "{}");
     this.placesDetails = [];
     for (const [key, value] of Object.entries(this.places)) {

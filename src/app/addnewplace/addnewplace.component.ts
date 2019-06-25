@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MapsService } from '../services/mapsservice.service'
+import { MapsService } from '../services/mapsservice.service';
 import * as uuid from 'uuid';
 import {Property} from '../model/property';
 
@@ -53,6 +53,7 @@ export class AddnewplaceComponent implements OnInit {
     console.log(property);
     places[myId] = property;
     localStorage.setItem("places", JSON.stringify(places));
+    owner.value = '';
     address.value = '';
     aprice.value = '';
     desc.value = '';

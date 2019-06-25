@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapsService } from '../services/mapsservice.service';
 
 @Component({
   selector: 'app-updateplace',
@@ -7,18 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateplaceComponent implements OnInit {
 
+  lat: number = 0;
+  lng: number = 0;
 
-
-  constructor() {
-    this.owner = '';
-    this.address = '';
-    this.aprice = 0;
-    this.desc = '';
+  constructor(private _mapsService: MapsService) {
     this.isSelected = false;
     this.selectedPlace = {};
     this.places = JSON.parse(localStorage.getItem("places") || "{}");
     this.placesDetails = [];
-    console.log(this.places);
     for (const [key, value] of Object.entries(this.places)) {
         this.placesDetails.push(value)
     }
@@ -28,13 +25,36 @@ export class UpdateplaceComponent implements OnInit {
   }
 
   updatePlace(property){
-
     this.isSelected = true;
     this.selectedPlace = property;
-    this.owner = this.selectedPlace.ownerName;
-    this.address = this.selectedPlace.address;
-    this.aprice = this.selectedPlace.askingPrice;
-    this.desc = this.selectedPlace.description;
-    console.log(this.selectedPlace);
+    this.lat = this.selectedPlace.lat;
+    this.lng = this.selectedPlace.lng;
+  }
+
+  savePlace(){
+    this.selectedPlace.lat = this.lat;
+    this.selectedPlace.lng = this.lng;
+    this.places[this.selectedPlace.id] = this.selectedPlace;
+    localStorage.setItem("places", JSON.stringify(this.places));
+  }
+
+  deletePlace(){
+    delete this.places[this.selectedPlace.id];
+    localStorage.setItem("places", JSON.stringify(this.places));
+    this.reload();
+  }
+
+  reload() {
+    window.location.reload();
+  }
+
+  getGeoLocation(){
+    this._mapsService.getGeoLocation(address.value).subscribe(resp => {
+      this.lat = resp.lat();
+      this.lng = resp.lng();
+    },
+    error => {
+      console.log(error);
+    });
   }
 }

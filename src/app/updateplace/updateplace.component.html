@@ -1,3 +1,32 @@
-<p>
-  updateplace works!
-</p>
+
+<h2>Update Property Details</h2>
+<div class="main">
+  <ul>
+    <li *ngFor="let place of this.placesDetails" >
+      <a (click) = "updatePlace(place)">{{place.ownerName}} <br/> {{place.address}}</a>
+    </li>
+  </ul>
+</div>
+
+<div class="main">
+  <div *ngIf="!isSelected; else elseBlock"><h3>Please select a place to Update</h3></div>
+  <ng-template #elseBlock>
+    <div class="formdiv">
+        <h2>Add New Property</h2>
+        <label for="owner">Owner Name</label>
+        <input type="text" id="owner" name="owner" placeholder="Enter Owner Name" [(ngModel)]="this.owner">
+
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" placeholder="Enter Address" [(ngModel)]="this.address" (blur)="getGeoLocation()">
+
+        <label for="aprice">Asking Price</label>
+        <input type="number" id="aprice" name="aprice" placeholder="Asking Price" [(ngModel)]="this.aprice">
+
+        <label for="desc">Description</label>
+        <input type="text" id="desc" name="desc" placeholder="Enter Description" [(ngModel)]="this.desc">
+
+        <input type="submit" value="Save" (click)="savePlace()">
+        <input type="submit" value="Delete" (click)="deletePlace()">
+    </div>
+  </ng-template>
+</div>

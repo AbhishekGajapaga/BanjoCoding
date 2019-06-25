@@ -13,6 +13,7 @@ export class AddnewplaceComponent implements OnInit {
   lat: number = 0;
   lng: number = 0;
 
+  owner: string;
   address : string;
   aprice : number;
   desc : string;
@@ -42,6 +43,7 @@ export class AddnewplaceComponent implements OnInit {
     var places = JSON.parse(localStorage.getItem("places") || "{}");
     let property : Property = {
       id: myId,
+      ownerName: owner.value,
       address: address.value,
       askingPrice: aprice.value,
       description: desc.value,

@@ -8,7 +8,7 @@ import { UpdateplaceComponent } from './updateplace/updateplace.component';
 const routes: Routes = [
   {path: 'home', component: MapviewComponent},
   {path: 'addnew', component: AddnewplaceComponent},
-  {path: 'update/:id', component: UpdateplaceComponent},
+  {path: 'update', component: UpdateplaceComponent},
   {path: '', redirectTo: '/home',pathMatch: 'full'},
 ];
 

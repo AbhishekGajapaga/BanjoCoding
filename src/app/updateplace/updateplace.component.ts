@@ -36,6 +36,7 @@ export class UpdateplaceComponent implements OnInit {
     this.selectedPlace.lng = this.lng;
     this.places[this.selectedPlace.id] = this.selectedPlace;
     localStorage.setItem("places", JSON.stringify(this.places));
+    this.reload();
   }
 
   deletePlace(){
@@ -49,7 +50,7 @@ export class UpdateplaceComponent implements OnInit {
   }
 
   getGeoLocation(){
-    this._mapsService.getGeoLocation(address.value).subscribe(resp => {
+    this._mapsService.getGeoLocation(this.selectedPlace.address).subscribe(resp => {
       this.lat = resp.lat();
       this.lng = resp.lng();
     },
